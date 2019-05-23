@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "woven-voice-240013",
+  "private_key_id": "f4e0a84a77449a45a55b29c167d25d0ca9f2d0b4",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDNgIChhC+Lu7VR\niTlyAiJ5Us3OsPO1woAvCfBQaYHGc9/PD6+YhpPc1o/rT4XhfSXkWbdtgmt3mW8/\n0F4Z8oA8E79PF7zgiL2q2LmOxseRFXnC972L0cum2hyFckxMTMQyGmUYxmFpW/+K\nRq6f2GVQGh8kn9hM9Mc1Csycpuay+gJ7plc5emkPpxMHfYW9oGWWinn3DJtGseJv\nqaLPZMm79znuYa2isWwYGE5ElhrvP2kPFBMuQPzj+VC1Lh+m5nIZLJfYQru1X/3b\nVRPgkWjiWx2g2dhFwwLJF0AbZR81Q8Xd/3xuBSF0CFMSwVEoVE6kqSeC4/b2ishg\nY3YUQAX1AgMBAAECggEACejCixyczvqdVXyt90g7Zv6Yq6OkZM/SWYemUwz7XoPo\n4gr/bHXqJwcg8nensjCphUIpkk9sejG9B7vhmxOynkhU0cNdxAqj8Vs4+2BXcDCz\nvzSDVdInJU5gJgkrElojSHKLDG+dyTRP9Vgk2dKtSU2xJxV0GyXfKI4dlrIvmVKs\nZthT7h8OtoSbXOjcqdWynkk2qGLDDlilvPA4tZIdd5jaOz7/e4FqGpf1CIAaW6SK\nJkU7+ax4b8KhihoTzBDmoZT5C6l5bX3HzECFqwwIYYRV7FvjuasJB9TH0ECu+4Ti\nEuCZpetBHzZZfiyOieHdgi2SuPU9TseplWwcs8+2UQKBgQDz6U2vqC53PfbAKcqM\nwOhbftzjnLDm6eWbWAK9QXLqgR9hZYtJ6GlQMjx7v25pwEps6cVr12QfakxqFLKp\nDqdpNFJxg5qmAjckPRAektIbuclpBXKQ1DdPViPBroswUpGLgUZSYOsh6tmUAT42\noSrylZ6sfDa5/OE3UfFBXS53LQKBgQDXr95ndBuONpKCPbdhs5tJBhlw59GhZdPR\ncqCskYKJURg1F5Uox8A8TPNN9A7Y9zRZr2+aq0A5+09yajzaGhYtUnYpW4pqOKvp\nZhPfpFDB/tv7RWa0h7iMzisbnolkSnA2Td8FJnqEMJa3rmTzhwHgehm0Z41k1G2M\n6wsIGWSG6QKBgQC2BNX3jw9V5wTb9JP2JAOCPBMFPKp7N/Mj0TMCHvRt8fwEB+5B\nMlJdCZA/XOU9v8UKsA2m468RDpeF1npZVNkz1lrr4SUoW6DgxzzfQ/vNuwCGAg2z\n7Np1tzep0uKGJif9LnTXBwKRZhwGqkLOK8nMDEHEQFHqy78aNGlQuQPy5QKBgCkA\nC30K+zn7cbpEVRnDdJ9bA3cM+jJ+EtfbvGNRfcjwm3NsOjR4VDiiQBXvcOsZguAR\nk1uJdjoPZbjQLSUglFqlNEUEW7l5cGR7vQdkSt21vsdzF+T1b8WEY3lql59y7wXD\no8Ns3xlFy0C7bAFHBrpPO5epn50tLG3/OCef/BYRAoGAeANS7V1IheR/Lp9DSxTq\npUck7iJSDw13dAhQHL8su2oQ7t1fSNryge3XqHmCOr7BkXPvAvx1XEA6hait1zOH\nWWOxT2mc5+oG3SCQR337b9ptu9rDdZn81/Lms/6WIDaI/4qqxntr0HoRTAl5+Tuq\nBYh+HuAe5if9WwOfINbo0lo=\n-----END PRIVATE KEY-----\n",
+  "client_email": "smartfoodtracker@woven-voice-240013.iam.gserviceaccount.com",
+  "client_id": "117669636693540275358",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/smartfoodtracker%40woven-voice-240013.iam.gserviceaccount.com"
+}
