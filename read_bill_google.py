@@ -16,6 +16,8 @@ from utils import util, geometry, image_processing
 import ast
 import re
 
+urk_alphabet = 'йцукенгшщзхїґфівапролджєячсмитьбюёЙЦУКЕНГШЩЗХЇҐФІВАПРОЛДЖЄЯЧСМИТЬБЮЁ'
+
 class FeatureType(Enum):
     PAGE = 1
     BLOCK = 2
@@ -60,11 +62,7 @@ def get_document_bounds(image_file, feature):
                             bounds.append(symbol.bounding_box)
 
                     if (feature == FeatureType.WORD):
-                        text = [s.text for s in word.symbols]
-                        box = bounding_box(word)
-                        box.text = text
-                        bounds.append(box)
-                        # bounds.append(word.bounding_box)
+                        bounds.append(word.bounding_box)
 
                 if (feature == FeatureType.PARA):
                     bounds.append(paragraph.bounding_box)
@@ -79,20 +77,73 @@ def get_document_bounds(image_file, feature):
     return bounds
 
 
+def extract_groceries(image_file):
+    client = vision.ImageAnnotatorClient()
+
+    blocks = []
+
+    with io.open(image_file, 'rb') as image_file:
+        content = image_file.read()
+
+    img_content = types.Image(content=content)
+
+    response = client.document_text_detection(image=img_content)
+    document = response.full_text_annotation
+    blocks = []
+    for page in document.pages:
+        for block in page.blocks:
+            text = []
+            for paragraph in block.paragraphs:
+                for word in paragraph.words:
+                    for symbol in word.symbols:
+                        text.append(symbol.text)
+                    text.append(' ')
+                text.append('\n')
+            text.append('\n')
+            text = ''.join(text)
+            blocks.append(text)
+
+    for block in blocks:
+        price = re.compile(r'\d{1,4}\s{0,1}\.\s{0,1}\d{2} [А-ЯA-ZА-Я]')
+        if price.search(block) is not None:
+            block = price.sub('\n', block)
+            block = re.sub(r'^[^#]*#', '', block)
+            block = re.sub(r'\(.*\)', '', block)
+            block = re.sub(r'[^{}\s]'.format(urk_alphabet), '', block)
+            block = re.sub(r'\b[\S]{1,3}\b', '', block)
+            block = re.sub(r'Знижка', '', block)
+            block = re.sub(r'\ {2,}', ' ', block).strip()
+            block = re.sub(r'\s{2,}', '\n', block)
+
+            with open('out.txt', 'w') as out:
+                out.write(block)
+                break
+        # bounds.append(annot.bounding_poly)
+
+    # draw_boxes(image, bounds, 'red')
+    # for page in document.pages:
+    #     for block in page.blocks:
+    #         for paragraph in block.paragraphs:
+    #             for word in paragraph.words:
+    #                 for symbol in word.symbols:
+
+
+
 
 def render_doc_text_google(filein, fileout):
     image = Image.open(filein)
-    bounds = get_document_bounds(filein, FeatureType.PAGE)
-    draw_boxes(image, bounds, 'blue')
-    bounds = get_document_bounds(filein, FeatureType.PARA)
-    draw_boxes(image, bounds, 'red')
-    bounds = get_document_bounds(filein, FeatureType.WORD)
-    draw_boxes(image, bounds, 'yellow')
+    # bounds = get_document_bounds(filein, FeatureType.PAGE)
+    # draw_boxes(image, bounds, 'blue')
+    extract_groceries(filein)
+    # bounds = get_document_bounds(filein, FeatureType.BLOCK)
 
-    if fileout is not 0:
-        image.save(fileout)
-    else:
-        image.show()
+    # bounds = get_document_bounds(filein, FeatureType.WORD)
+    # draw_boxes(image, bounds, 'yellow')
+
+    # if fileout is not 0:
+    #     image.save(fileout)
+    # else:
+    #     image.show()
 
 
 if __name__ == '__main__':
