@@ -103,11 +103,13 @@ def extract_groceries(image_file):
             text = ''.join(text)
             blocks.append(text)
 
+    print(blocks)
+
     for block in blocks:
         price = re.compile(r'\d{1,4}\s{0,1}\.\s{0,1}\d{2} [А-ЯA-ZА-Я]')
         if price.search(block) is not None:
             block = price.sub('\n', block)
-            block = re.sub(r'^[^#]*#', '', block)
+            block = re.sub(r'Чек #', '', block)
             block = re.sub(r'\(.*\)', '', block)
             block = re.sub(r'[^{}\s]'.format(urk_alphabet), '', block)
             block = re.sub(r'\b[\S]{1,3}\b', '', block)
@@ -135,20 +137,20 @@ def render_doc_text_google(filein, fileout):
     # bounds = get_document_bounds(filein, FeatureType.PAGE)
     # draw_boxes(image, bounds, 'blue')
     extract_groceries(filein)
-    # bounds = get_document_bounds(filein, FeatureType.BLOCK)
+    bounds = get_document_bounds(filein, FeatureType.BLOCK)
 
     # bounds = get_document_bounds(filein, FeatureType.WORD)
-    # draw_boxes(image, bounds, 'yellow')
+    draw_boxes(image, bounds, 'red')
 
-    # if fileout is not 0:
-    #     image.save(fileout)
-    # else:
-    #     image.show()
+    if fileout is not 0:
+        image.save(fileout)
+    else:
+        image.show()
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-detect_file', default='resources/images/IMG_4076.JPG', help='The image for text detection.')
+    parser.add_argument('-detect_file', default='resources/images/IMG_4077.JPG', help='The image for text detection.')
     parser.add_argument('-out_file', help='Optional output file', default=0)
     args = parser.parse_args()
     image = cv2.imread(args.detect_file)
